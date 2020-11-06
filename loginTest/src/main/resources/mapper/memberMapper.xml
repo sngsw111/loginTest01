@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberMapper.postgre">
+	<select id="getMember">
+		select * from member
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="register">
+		INSERT INTO MEMBER(	USERID
+							,	PWD
+							,	USERNAME)
+					VALUES(		#{userId}
+							,	#{pwd}
+							,	#{userName})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="com.example.demo.vo.MemberVo">
+		SELECT USERID,PWD FROM MEMBER
+		WHERE USERID = #{userId} AND PWD = #{pwd}
+	</select>
+</mapper>
